@@ -82,7 +82,6 @@ export class MyElement extends LitElement {
           () => this.form.get('user').get('name').setUIState('ENABLED')
         }>enable name</button>
         <button>submit</button>
-        <button type="button" @click=${this.test}>test</button>
       </form>
       ${this.renderDebugForm()}
     `;
@@ -106,10 +105,6 @@ export class MyElement extends LitElement {
       Form status: ${form.status}<br>
       Form errors: ${JSON.stringify(form.errors)}<br>
     `
-  }
-
-  test() {
-    this.form.removeControl('counter')
   }
 
   addPhone() {
