@@ -1,0 +1,25 @@
+{
+  "name": "lit-reactive-forms",
+  "version": "0.0.1",
+  "main": "dist/lit-reactive-forms.es.js",
+  "exports": {
+    ".": "./dist/lit-reactive-forms.es.js"
+  },
+  "types": "types/lit-reactive-forms.d.ts",
+  "files": [
+    "dist",
+    "types"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build"
+  },
+  "dependencies": {
+    "lit": "^2.0.2",
+    "rxjs": "^7.5.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4",
+    "vite": "^2.7.2"
+  }
+}
