@@ -310,6 +310,10 @@ export class FormArray<T extends AbstractControl> implements AbstractControl, Re
           )
         });
 
+        if (observables.length < 1) {
+          return of([]);
+        }
+
         return combineLatest(observables).pipe(
           map((values) => values.filter((v) => v !== null))
         );

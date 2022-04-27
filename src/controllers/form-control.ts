@@ -1,6 +1,20 @@
 import { ReactiveController, ReactiveControllerHost } from 'lit';
 import { bindFactory } from '../directives/bind.directive';
-import { Observable, Subscription, from, combineLatest, of, BehaviorSubject, merge, ReplaySubject, catchError, distinctUntilChanged, map, switchMap, tap } from 'rxjs';
+import {
+  Observable,
+  Subscription,
+  from,
+  combineLatest,
+  of,
+  BehaviorSubject,
+  merge,
+  ReplaySubject,
+  catchError,
+  distinctUntilChanged,
+  map,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { AbstractControl } from '../abstract-control';
 import { UIState } from "../models";
 import { AsyncValidator, ValidationError, ValidationStatus, Validator } from '../validation/models';
@@ -239,9 +253,11 @@ export class FormControl<T = any> implements AbstractControl, ReactiveController
             }),
           )
         });
-
+        if (observables.length < 1) {
+          return of([]);
+        }
         return combineLatest(observables).pipe(
-          map((values) => values.filter((v) => v !== null))
+            map((values) => values.filter((v) => v !== null))
         );
       })
     ).subscribe(e => {

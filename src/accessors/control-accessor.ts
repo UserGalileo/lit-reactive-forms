@@ -31,17 +31,17 @@ export class BaseControlAccessor<E extends HTMLElement = HTMLElement, T = any> i
     switch (uiState) {
       case 'DISABLED': {
         if ('disabled' in this.el) { (this.el as any).disabled = true; }
-        if ('readonly' in this.el) { (this.el as any).readonly = false; }
+        if ('readOnly' in this.el) { (this.el as any).readOnly = false; }
         break;
       }
       case 'READONLY': {
         if ('disabled' in this.el) { (this.el as any).disabled = false; }
-        if ('readonly' in this.el) { (this.el as any).readonly = true; }
+        if ('readOnly' in this.el) { (this.el as any).readOnly = true; }
         break;
       }
       default: {
         if ('disabled' in this.el) { (this.el as any).disabled = false; }
-        if ('readonly' in this.el) { (this.el as any).readonly = false; }
+        if ('readOnly' in this.el) { (this.el as any).readOnly = false; }
         break;
       }
     }

@@ -85,7 +85,7 @@ export const bindFactory = (control: FormControl) => {
         // Remove all validator attributes
         this.validators.forEach(_v => {
           const v = _v as ValidatorWithEffects;
-          v.disconnected(this.element, control);
+          v.disconnected?.(this.element, control);
         });
         this.validators = [];
         this.accessor.setValidity?.(null);
@@ -130,11 +130,11 @@ export const bindFactory = (control: FormControl) => {
           ).subscribe(newValidators => {
 
             this.validators.forEach(v => {
-              (v as ValidatorWithEffects).disconnected(this.element, control);
+              (v as ValidatorWithEffects).disconnected?.(this.element, control);
             })
 
             newValidators.forEach(v => {
-              (v as ValidatorWithEffects).connected(this.element, control);
+              (v as ValidatorWithEffects).connected?.(this.element, control);
             })
 
             this.validators = newValidators;

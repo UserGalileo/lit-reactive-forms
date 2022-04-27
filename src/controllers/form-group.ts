@@ -277,6 +277,10 @@ export class FormGroup<T extends GroupShape> implements AbstractControl, Reactiv
           )
         });
 
+        if (observables.length < 1) {
+          return of([]);
+        }
+
         return combineLatest(observables).pipe(
           map((values) => values.filter((v) => v !== null))
         );
