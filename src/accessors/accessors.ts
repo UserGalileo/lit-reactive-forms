@@ -42,6 +42,15 @@ export class SelectMultipleAccessor extends BaseControlAccessor<HTMLSelectElemen
     }
   }
 }
+export class RadioAccessor extends BaseControlAccessor<HTMLInputElement, string> {
+  getValue() {
+    return this.el.checked ? this.el.value : null;
+  }
+
+  setValue(value: string) {
+    this.el.checked = value === this.el.value;
+  }
+}
 
 export type ControlAccessorFactory<C extends HTMLElement = HTMLElement, T = any> = (el: C) => ControlAccessor<T>;
 
@@ -52,8 +61,14 @@ export const getControlAccessor: ControlAccessorFactory = (el) => {
   if (el.localName === 'input' && el.getAttribute('type') === 'number') {
     return new NumberAccessor(el as HTMLInputElement);
   }
+  if (el.localName === 'input' && el.getAttribute('type') === 'range') {
+    return new NumberAccessor(el as HTMLInputElement);
+  }
   if (el.localName === 'input' && el.getAttribute('type') === 'text') {
     return new TextAccessor(el as HTMLInputElement);
+  }
+  if (el.localName === 'input' && el.getAttribute('type') === 'radio') {
+    return new RadioAccessor(el as HTMLInputElement);
   }
   if (el.localName === 'select' && el.hasAttribute('multiple')) {
     return new SelectMultipleAccessor(el as HTMLSelectElement);
